@@ -23,7 +23,7 @@
                 </h1>
                 <nav class="flex items-center gap-2">
                     <a class="font-semibold uppercase text-sm" href="#">Iniciar sesion</a>
-                    <a class="font-semibold uppercase text-sm" href="#">Crear cuenta</a>
+                    <a class="font-semibold uppercase text-sm" href="/register">Crear cuenta</a>
                 </nav>
             </div>
         </header>   
