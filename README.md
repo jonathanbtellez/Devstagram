@@ -67,6 +67,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Important commands
 
+### PHP Commands
 Command to migrate and connect a database
 
 `
@@ -83,4 +84,19 @@ Run local serve
 
 `
 php artisan serve
+`
+
+### NPM Commands
+
+
+Install tailwind in vite
+
+`
+npm install -D tailwindcss postcss autoprefixer
+`
+
+Create tailwind.config and postcss.config 
+
+`
+npx tailwindcss init -p
 `
