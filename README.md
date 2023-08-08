@@ -100,3 +100,28 @@ Create tailwind.config and postcss.config
 `
 npx tailwindcss init -p
 `
+### Artisan
+
+CLI provide for laravel
+
+`
+php artisan
+`
+
+Get info about how to create a controller
+
+`
+php artisan make:controller --help
+`
+
+Creating controller
+
+`
+php artisan make:controller nameController
+`
+
+Creating controller in a specific folder
+
+`
+php artisan make:controller Folder\\NameController
+`
