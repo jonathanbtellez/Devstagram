@@ -11,7 +11,8 @@
             <img src="{{ asset('img/registrar.jpg')}}" alt="Regis5ter imagess">
         </div>
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
-            <form action="/register" method="POST">
+            {{-- with route we can navigate to named route --}}
+            <form action="{{route('register')}}" method="POST">
                 @csrf
                 <div class="mb-5">
                     <label for="name" class="mb-2 block uppercase text-gray-600 font-bold">

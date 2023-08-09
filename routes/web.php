@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 // [Controller::class, 'Method to call the view']
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
 // [Controller::class, 'Method to store data']
 // [RegisterController::class, 'store']

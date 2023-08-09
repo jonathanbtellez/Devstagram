@@ -125,3 +125,7 @@ Creating controller in a specific folder
 `
 php artisan make:controller Folder\\NameController
 `
+
+Convention to name controllers methods 
+
+![Alt text](./public/img/image.png)
