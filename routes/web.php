@@ -20,3 +20,7 @@ Route::get('/', function () {
 
 // [Controller::class, 'Method to call the view']
 Route::get('/register', [RegisterController::class, 'index']);
+
+// [Controller::class, 'Method to store data']
+// [RegisterController::class, 'store']
+Route::post('/register', [RegisterController::class, 'store']);
