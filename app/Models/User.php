@@ -19,6 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        // To send custom values we need add this to the model
+        'username',
         'email',
         'password',
     ];

@@ -129,3 +129,27 @@ php artisan make:controller Folder\\NameController
 Convention to name controllers methods 
 
 ![Alt text](./public/img/image.png)
+
+
+### Migrations
+Version control of our databases
+
+Create a migration
+
+`
+php artisan migrate
+`
+
+do a rollback in a migration
+
+`
+php artisan migrate:rollback
+`
+
+other ways to do a migration
+
+
+
+`
+php artisan make:migration name_migration
+`
