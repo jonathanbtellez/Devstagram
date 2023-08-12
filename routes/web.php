@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 
 // Name is a function that sabe the name of the endpoint to be use after and if we need chande the endpoint we have issues
