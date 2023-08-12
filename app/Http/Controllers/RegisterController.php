@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Str;
 class RegisterController extends Controller
 {
 
@@ -25,6 +26,13 @@ class RegisterController extends Controller
         // Using get method we can obtain the info related to the name attribute in html pass as parameter
         // dd($request->get('name'));
 
+
+        // Modify the request
+        $request->request->add([
+            'username' => Str::slug($request->username)
+        ]);
+
+
         // Validation
         // Do validate of the information received
         // validate($request, rules)
@@ -40,6 +48,8 @@ class RegisterController extends Controller
 
         User::create([
             'name' => $request->name,
+            // Str::lower Transform text to lowercase
+            // Str::slug transform the text to a url
             'username' => $request->username,
             'email' => $request->email,
             'password' => $request->password,

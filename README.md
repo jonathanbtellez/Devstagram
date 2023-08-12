@@ -148,8 +148,8 @@ php artisan migrate:rollback
 
 other ways to do a migration
 
-
-
 `
 php artisan make:migration name_migration
 `
+
+php artisan migrate:refresh

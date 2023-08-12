@@ -17,8 +17,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             // insert colunm to users table
-            // $table->string('username');
-            $table->string('username');
+            $table->string('username')->unique();
         });
     }
 
