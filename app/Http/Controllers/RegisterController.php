@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Str;
+
+use function Laravel\Prompts\password;
+
 class RegisterController extends Controller
 {
 
@@ -53,7 +56,18 @@ class RegisterController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => $request->password,
+            // Hash::make( $request->password ) hash the password
         ]);
+
+        // This function try to auth the user an return a boolean with the result
+        // auth()->attempt([
+        //     'email' => $request->email,
+        //     'password' => $request->password
+        // ]);
+
+        // other way to auth user
+        auth()->attempt($request->only('email','password'));
+
 
         // Redirect the user to the name of the route
         return redirect()->route('posts.index');

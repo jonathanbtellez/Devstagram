@@ -152,4 +152,8 @@ other ways to do a migration
 php artisan make:migration name_migration
 `
 
+Create a new migration an delete the registers in the db
+
+`
 php artisan migrate:refresh
+`
