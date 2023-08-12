@@ -29,6 +29,8 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store']);
+
 
 
 // Name is a function that sabe the name of the endpoint to be use after and if we need chande the endpoint we have issues
