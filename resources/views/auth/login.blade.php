@@ -18,7 +18,7 @@
 
                 {{-- Validate if the session includes a message session and print it --}}
                 @if (session('message'))
-                    <p class="bg-red-800 rounded text-sm text-white text-center p-1">{{ session('message') }}</p>   
+                    <p class="bg-red-600 rounded text-sm text-white text-center mb-2">{{ session('message') }}</p>   
                 @endif
 
 

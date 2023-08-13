@@ -20,7 +20,7 @@ class LoginController extends Controller
         ]);
 
         // Check if the attemp of auth is not true
-        if(!auth()->attempt($request->only('email','password')));{
+        if(!auth()->attempt($request->only('email', 'password'))){
             // If the auth is not true come back with a session to the login page and show the message to the user
             return back()->with('message', 'Credenciales no validas');
         }

@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Destagram - @yield('title')</title>
+    
+    {{-- Bootstrap icons --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    {{-- @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"); --}}
 
     {{-- connect the tailwind styles used in the project with vite server --}}
     @vite('resources/css/app.css')
@@ -23,10 +27,36 @@
             <h1 class="text-3xl font-black">
                 DevStagram
             </h1>
+
             <nav class="flex items-center gap-2">
-                <a class="font-semibold uppercase text-sm" href="{{ route('register') }}">Iniciar sesion</a>
-                <a class="font-semibold uppercase text-sm" href="/register">Crear cuenta</a>
+                {{-- Validate if there is an authenticated user --}}
+                {{-- @if (auth()->user())
+                <p>Authenticated</p>
+            @else
+                <p>No Authenticated</p>
+            @endif --}}
+
+                {{-- use the auth directive to check if there is an authenticated  user  --}}
+                @auth
+                    <a
+                      class="font-semibold text-sm"
+                      href="{{ route('login') }}">
+                      {{-- Get data of user object: auth()->user()->username --}}
+                        Hola: <span class="font-normal">{{ auth()->user()->username }}</span>
+                    </a>
+                    |<a class="font-semibold uppercase text-sm" href="{{ route('logout') }}">Cerrar sesion <i class="bi bi-door-open"></i></a>
+                @endauth
+
+                {{-- guest -> invitado, huesped --}}
+                {{-- Use the guest directive to show information if there isn´t an autheticated user --}}
+                @guest
+                    <a class="font-semibold uppercase text-sm" href="{{ route('login') }}">Iniciar sesion</a>
+                    <a class="font-semibold uppercase text-sm" href="{{ route('register') }}">Crear cuenta</a>
+                @endguest
+
+
             </nav>
+
         </div>
     </header>
     <main class="container mx-auto mt-10">
