@@ -40,5 +40,8 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 // When we use {} in the path we are creating a dinamic urls
 // When we use between the {} a name of a model ex. {user} we are using route model binding
 
-Route::get('/{user}', [PostController::class, 'index'])->name('posts.index');
+// Route::get('/{user}', [PostController::class, 'index'])->name('posts.index');
+
+// we can use a attr of a model binded after two points /{user:username}
+Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
 
