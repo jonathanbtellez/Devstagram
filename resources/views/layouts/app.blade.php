@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Destagram - @yield('title')</title>
-    
+
     {{-- Bootstrap icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     {{-- @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"); --}}
@@ -30,27 +30,35 @@
 
             <nav class="flex items-center gap-2">
                 {{-- Validate if there is an authenticated user --}}
+
                 {{-- @if (auth()->user())
-                <p>Authenticated</p>
-            @else
-                <p>No Authenticated</p>
-            @endif --}}
+                    <p>Authenticated</p>
+                    @else
+                    <p>No Authenticated</p>
+                    @endif --}}
 
                 {{-- use the auth directive to check if there is an authenticated  user  --}}
                 @auth
-                    <a
-                      class="font-semibold text-sm"
-                      href="{{ route('login') }}">
-                      {{-- Get data of user object: auth()->user()->username --}}
+                    <a class="font-semibold text-sm" href="{{ route('login') }}">
+                        {{-- Get data of user object: auth()->user()->username --}}
                         Hola: <span class="font-normal">{{ auth()->user()->username }}</span>
                     </a>
-                    |<a class="font-semibold uppercase text-sm" href="{{ route('logout') }}">Cerrar sesion <i class="bi bi-door-open"></i></a>
+                    {{-- Closing session implemetents security require use a post method --}}
+                    |
+                    <form action="{{ route('logout') }}" method="POST">
+                        {{-- This directive avoid attacks of crsf --}}
+                        @csrf
+                        <button type="submit" class="font-semibold uppercase text-sm">Cerrar sesion <i
+                                class="bi bi-door-open"></i>
+                        </button>
+                    </form>
                 @endauth
 
                 {{-- guest -> invitado, huesped --}}
                 {{-- Use the guest directive to show information if there isn´t an autheticated user --}}
                 @guest
                     <a class="font-semibold uppercase text-sm" href="{{ route('login') }}">Iniciar sesion</a>
+                    |
                     <a class="font-semibold uppercase text-sm" href="{{ route('register') }}">Crear cuenta</a>
                 @endguest
 

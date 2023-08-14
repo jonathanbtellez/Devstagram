@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,7 +13,8 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    // When we use a Route Model Binding automatically the method of this url wait a object od this class as a parameter
+    public function index(User $user){
         // auth()->user() check if the user is authenticated
         // dd(auth()->user());
 

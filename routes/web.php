@@ -33,9 +33,12 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
 // logout
-Route::get('/logout', [LogoutController::class, 'store'])->name('logout');
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 
 // Name is a function that sabe the name of the endpoint to be use after and if we need chande the endpoint we have issues
-Route::get('/wall', [PostController::class, 'index'])->name('posts.index');
+// When we use {} in the path we are creating a dinamic urls
+// When we use between the {} a name of a model ex. {user} we are using route model binding
+
+Route::get('/{user}', [PostController::class, 'index'])->name('posts.index');
 
