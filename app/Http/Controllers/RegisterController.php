@@ -7,10 +7,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-use function Laravel\Prompts\password;
 
 class RegisterController extends Controller
 {
+
 
     // Resource controller is called the conventions to name controllers methods
 
@@ -20,6 +20,9 @@ class RegisterController extends Controller
      */
     public function index()
     {
+        if (auth()->user()) {
+            return redirect()->route('posts.index', auth()->user()->username);
+        };
         return view('auth.register');
     }
     // IN controllers we can use a Request that containt the info about the http to be use later
@@ -57,7 +60,7 @@ class RegisterController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             // 'password' => $request->password,
-            'password' => Hash::make( $request->password ) //hash the password;
+            'password' => Hash::make($request->password) //hash the password;
         ]);
 
         // This function try to auth the user an return a boolean with the result
@@ -67,10 +70,10 @@ class RegisterController extends Controller
         // ]);
 
         // other way to auth user
-        auth()->attempt($request->only('email','password'));
+        auth()->attempt($request->only('email', 'password'));
 
 
         // Redirect the user to the name of the route
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index', auth()->user()->username);
     }
 }

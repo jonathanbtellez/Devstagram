@@ -8,12 +8,19 @@
 
     <title>Destagram - @yield('title')</title>
 
+
     {{-- Bootstrap icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     {{-- @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"); --}}
 
+    {{-- Receiving a list of styles that going to be use for the children component that use push directive --}}
+    @stack('styles')
+    
+
     {{-- connect the tailwind styles used in the project with vite server --}}
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+
 
     <!-- Fonts
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -39,7 +46,12 @@
 
                 {{-- use the auth directive to check if there is an authenticated  user  --}}
                 @auth
-                    <a class="font-semibold text-sm" href="{{ route('login') }}">
+                    <a href="{{ route('posts.create') }}"
+                        class="flex items-center gap-2 text-sm uppercase font-semibold cursor-pointer">
+                        Crear <i class="bi bi-image"></i>
+                    </a>
+                    |
+                    <a class="font-semibold text-sm" href="{{ route('posts.index', auth()->user()->username) }}">
                         {{-- Get data of user object: auth()->user()->username --}}
                         Hola: <span class="font-normal">{{ auth()->user()->username }}</span>
                     </a>
@@ -68,7 +80,7 @@
         </div>
     </header>
     <main class="container mx-auto mt-10">
-        <h2 class="font-black text-center text-3xl mb-10">@yield('title')</h2>
+        <h2 class="font-semibold text-center text-3xl mb-10"> @yield('title') </h2>
         @yield('content')
     </main>
     <footer class="text-center p-10 font-bold uppercase shadow bg-gradient-to-r from-purple-400 to-blue-300">

@@ -131,6 +131,18 @@ Convention to name controllers methods
 ![Alt text](./public/img/image.png)
 
 
+Models
+
+`
+php artisan make:model nameModelSingular
+`
+
+Creating model, migration, controller or factory using flags
+
+`
+php artisan make:model --migration --controller --factory name
+`
+
 ### Migrations
 Version control of our databases
 
@@ -157,3 +169,48 @@ Create a new migration an delete the registers in the db
 `
 php artisan migrate:refresh
 `
+
+the use of descriptive names in laraval going to help you to manage db more easily
+
+`
+php artisan make:migration create_posts_table
+`
+
+
+### Tinker CLI
+
+This is a cli where we can interact with data and db of our app
+
+
+the use of descriptive names in laraval going to help you to manage db more easily
+
+`
+php artisan tinker
+`
+
+Search a register in out data base
+
+`
+$usuario = User::find(id);
+`
+
+We can run a factory using the namespace
+
+`
+App\Models\Post::factory();
+`
+
+also we can use a alias like this
+
+`
+Post::factory();
+`
+
+Execute a factory the times that you need
+
+`
+App\Models\Post::factory()->times(200)->create();
+`
+
+If we see issues executing the mistakes we can do a rollback to delete the try info and execute a migrate again to try again or use your migration after each modify in your code you need up tinker again if you want do tries
+

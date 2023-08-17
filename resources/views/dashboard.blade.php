@@ -1,11 +1,8 @@
 @extends('layouts.app')
 
 @section('title')
-    Perfil:
-    <span class="font-normal">
-        {{ $user->username }}
-    @endsection
-</span>
+    Perfil: {{ $user->username }}
+@endsection
 
 
 @section('content')

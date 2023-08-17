@@ -10,6 +10,10 @@ class LoginController extends Controller
     //
     public function index()
     {
+        if (auth()->user()) {
+            return redirect()->route('posts.index', auth()->user()->username);
+        };
+        
         return view('auth.login');
     }
 
@@ -35,6 +39,7 @@ class LoginController extends Controller
             return back()->with('message', 'Credenciales no validas');
         }
 
-        return redirect()->route('posts.index');
+        // As second parameter we can send a parameters array[]
+        return redirect()->route('posts.index', auth()->user()->username);
     }
 }
