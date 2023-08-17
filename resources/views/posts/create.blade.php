@@ -67,7 +67,10 @@
                     @enderror
                 </div>
                 <div class="mb-5">
-                    <input name="image" type="hidden">
+                    <input
+                      name="image"
+                      type="hidden"
+                      value="{{old('image')}}">
                 </div>
                 <div class="mb-3">
 

@@ -44,4 +44,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    // create relation
+    public function posts() {
+        // 1 define type of relation
+        // 2 Pass as argument the class that you want relationate
+        return $this->hasMany(Post::class);
+    }
 }

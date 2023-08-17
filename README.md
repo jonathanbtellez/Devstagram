@@ -214,3 +214,12 @@ App\Models\Post::factory()->times(200)->create();
 
 If we see issues executing the mistakes we can do a rollback to delete the try info and execute a migrate again to try again or use your migration after each modify in your code you need up tinker again if you want do tries
 
+Consult relations using tinker
+
+1. find the model
+2. Check the model ralationated 
+
+`
+$model = Model::find(id)
+$model->modelRelation
+`

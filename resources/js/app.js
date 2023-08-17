@@ -4,15 +4,26 @@ import Dropzone from 'dropzone';
 // Desactivate the default behavior
 Dropzone.autoDiscover = false;
 
-
-const dropzone = new Dropzone('#dropzone',{
+// Image manager config
+const dropzone = new Dropzone('#dropzone', {
     dictDefaultMessage: 'Sube tu imagen aqui',
     acceptedFiles: '.png, .jpg, .jpeg, .git',
     addRemoveLinks: true,
     dictRemoveFile: 'Borrar archivo',
     maxFiles: 1,
-    uploadMultiple: false
-} );
+    uploadMultiple: false,
+    init: function(){
+        if (document.querySelector('[name="image"]').value.trim()) {
+            const imageUploaded = {}
+            imageUploaded.size = 1234;
+            imageUploaded.name = document.querySelector('[name="image"]').value;
+            this.options.addedfile.call(this, imageUploaded)
+            this.options.thumbnail.call(this, imageUploaded, `/uploads/${imageUploaded.name}`)
+
+            dropzone.previewElement.classList.add('dz-success', 'dz-complete')
+        }
+    }
+});
 
 // dropzone.on('sending', function(file, xhr, formData){
 //     console.log('====================================');
@@ -20,7 +31,7 @@ const dropzone = new Dropzone('#dropzone',{
 //     console.log('====================================');
 // });
 
-dropzone.on('success',(file, response)=>{
+dropzone.on('success', (file, response) => {
     console.log(response.image);
     document.querySelector('[name="image"]').value = response.image
 });
@@ -31,8 +42,6 @@ dropzone.on('success',(file, response)=>{
 //     console.log('====================================');
 // });
 
-dropzone.on('removedfile',()=>{
-    console.log('====================================');
-    console.log('file deleted');
-    console.log('====================================');
+dropzone.on('removedfile', () => {
+    document.querySelector('[name="image"]').value = "";
 });
