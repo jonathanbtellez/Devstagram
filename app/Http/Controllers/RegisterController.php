@@ -10,8 +10,6 @@ use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
-
-
     // Resource controller is called the conventions to name controllers methods
 
     //

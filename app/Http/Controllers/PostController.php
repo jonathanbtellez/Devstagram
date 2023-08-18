@@ -9,32 +9,49 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     //
-    // public function __construct(){
-    // Use middleware to protect our route
-    // $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        // Use middleware to protect our route
+        $this->middleware('auth');
+    }
 
     // When we use a Route Model Binding automatically the method of this url wait a object od this class as a parameter
     public function index(User $user)
     {
 
-        if (!auth()->user()) {
-            return redirect()->route('login');
-        };
         // auth()->user() check if the user is authenticated
         // dd(auth()->user());
 
+        // Do a consult in our db
+        // Params 1= field in our table
+        // Param 2: dato that going to be equal
+        // get method return the consult to the database
+        // $posts  = Post::where('user_id', $user->id)->get();
+
+
+        // Paginate method allow show a specific quantity of register per view and a method to see the next  or previous registers
+        $posts  = Post::where('user_id', $user->id)->paginate(8);
+
+        // Filter by collection
+        // This filter don´t have
+        // $user->posts
+        // $post only going to return the model
+        // To see al result you need use get method
+        // dd($post->get());
+
         // view fn receive a view as first param and a data as second
+        // Al info sended in the second param will be avaible in our view
         return view('dashboard', [
-            'user' => $user
+            'user' => $user,
+            'posts' => $posts
         ]);
     }
 
     public function create()
     {
-        if (!auth()->user()) {
-            return redirect()->route('login');
-        };
+        // if (!auth()->user()) {
+        //     return redirect()->route('login');
+        // };
         return view('posts.create');
     }
 
