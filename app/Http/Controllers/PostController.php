@@ -12,7 +12,8 @@ class PostController extends Controller
     public function __construct()
     {
         // Use middleware to protect our route
-        $this->middleware('auth');
+        // with except we can allow thw access to the method that you want
+        $this->middleware('auth')->except(['show', 'index']);
     }
 
     // When we use a Route Model Binding automatically the method of this url wait a object od this class as a parameter
