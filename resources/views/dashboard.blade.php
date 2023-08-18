@@ -32,16 +32,25 @@
         @if ($posts->count())
             <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-5 p-5">
                 {{-- Iterate an array --}}
-                @foreach($posts as $post)
+                @foreach ($posts as $post)
                     {{-- <div>
                         <a href='#'> --}}
-                            {{-- Construct the URL --}}
-                            {{-- <img src={{ asset('uploads').'/'.$post->image }} alt='Imagen del post {{ $post->title }}'>
+                    {{-- Construct the URL --}}
+                    {{-- <img src={{ asset('uploads').'/'.$post->image }} alt='Imagen del post {{ $post->title }}'>
 
                         </a>
                     </div> --}}
                     {{-- Replace html for a component that can be use in others views --}}
                     @component('_components.imageCard')
+                        
+                        {{-- Puth a condition to use or not ancor tag --}}
+                        @slot('useUrl', true)
+                        
+                        {{-- Redirect to post/{id} view --}}
+                        @slot('path', 'posts.show')
+                        @slot('params', ['post' => $post, 'user' => $user])
+
+                        {{-- Show info of the image in our view --}}
                         @slot('image', $post->image)
                         @slot('title', $post->title)
                     @endcomponent

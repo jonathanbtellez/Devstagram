@@ -91,4 +91,16 @@ class PostController extends Controller
 
         return redirect(route('posts.index', auth()->user()->username));
     }
+
+    // Pass the object that the url wait to do a model data binding
+    // The order gice in the controller must be respected
+    public function show(User $user, Post $post) 
+    {
+        return view('posts.show',
+        [
+            // Send data to be use in the view
+            'user'=> $user,
+            'post' => $post,
+        ]);
+    }
 }

@@ -53,8 +53,14 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
 
 // Come back to the laravel conventions
+// view to create a register
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+
+//Post data to create a register
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+
+// Show a register
+Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 
 
