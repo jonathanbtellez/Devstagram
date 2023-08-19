@@ -223,3 +223,14 @@ Consult relations using tinker
 $model = Model::find(id)
 $model->modelRelation
 `
+### Policies
+
+The policies help to do some actions to a model associate 
+
+Command 
+
+the flag --model associate a policy with the model given 
+
+`
+php artisan make:policy PostPolicy --model=post
+`

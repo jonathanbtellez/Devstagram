@@ -24,6 +24,21 @@
                 {{-- Method to do format to dates diffForHumans() by Carbon --}}
                 <p class="text-sm text-gray-500">{{ $post->created_at->diffForHumans() }}</p>
             </div>
+
+            {{-- Check if the are auth user --}}
+            @auth
+                @if($post->user_id === auth()->user()->id)
+                <form action="{{route('posts.destroy', $post)}}" method="POST" >
+                    {{-- Method Spoofing allow use other type of method differents to get and post ex. delete, patch, put--}}
+                    @method('DELETE')
+                    @csrf
+                    <div class="mb-3 mt-2">
+                        <input type="submit" value="Eliminar post"
+                            class="bg-gradient-to-r hover:from-pink-600 hover:to-yellow-600 from-pink-500 to-yellow-500 transition-colors cursor-pointer uppercase font-bold p-2 text-white rounded-lg" />
+                    </div>
+                </form>
+                @endif
+            @endauth
         </div>
         <div class="md:w-1/2 p-3">
             <div class="shadow bg-white p-5 mb-5">
@@ -33,7 +48,7 @@
                     </p>
 
                     @if (session('message'))
-                        <div class="bg-purple-200 p-2 text-sm rounded-lg mb-4text-white text-center font-light uppercase">
+                        <div class="bg-purple-300 p-2 text-sm rounded-lg mb-4 text-white text-center font-semibold uppercase">
                             {{ session('message') }}
                         </div>
                     @endif
@@ -59,7 +74,7 @@
                     </form>
                 @endauth
                 @if ($post->comments->count())
-                <div class="bg-white shadow mb-5 max-h-96 overflow-y-scroll mt-5">
+                    <div class="bg-white shadow mb-5 max-h-96 overflow-y-scroll mt-5">
                         @foreach ($post->comments as $comment)
                             @component('posts._components.commentCard')
                                 @slot('comment', $comment->comment)
@@ -68,10 +83,10 @@
                             @endcomponent
                         @endforeach
                     @else
-                        <p class="text-center p-10">No hay commentarios</p>
-                    @endif
-                </div>
+                        <p class="text-center p-10">No hay comentarios</p>
+                @endif
             </div>
         </div>
+    </div>
     </div>
 @endsection

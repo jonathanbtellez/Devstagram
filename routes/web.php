@@ -63,6 +63,10 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 // Show a register
 Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
+// Delete a register
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+
 
 
 // -------------------------------- IMAGE ---------------------------------------
