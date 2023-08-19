@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -66,3 +67,8 @@ Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->na
 
 // -------------------------------- IMAGE ---------------------------------------
 Route::post('/images', [ImageController::class, 'store'])->name('images.store');
+
+
+
+// ------------------------- COMMENTS ---------------------------------------------
+Route::post('/{user:username}/posts/{post}', [CommentController::class, 'store'])->name('comments.store');

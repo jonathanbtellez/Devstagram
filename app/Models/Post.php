@@ -29,4 +29,9 @@ class Post extends Model
         // 3. the method select allow us choise want columns we want
         return $this->belongsTo(User::class)->select(['name', 'username']);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

@@ -32,7 +32,7 @@
     {{-- use a partial of html --}}
     @include('layouts._partials.header')
     <main class="container mx-auto mt-10">
-        <h2 class="font-semibold text-center text-3xl mb-10"> @yield('title') </h2>
+        <h2 class="font-semibold text-center text-3xl mb-10 md:mb-5"> @yield('title') </h2>
         @yield('content')
     </main>
     <footer class="text-center p-10 font-bold uppercase shadow bg-gradient-to-r from-purple-400 to-blue-300">
