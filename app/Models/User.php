@@ -52,4 +52,10 @@ class User extends Authenticatable
         // 2 Pass as argument the class that you want relationate
         return $this->hasMany(Post::class);
     }
+
+    public function likes() {
+        // 1 define type of relation
+        // 2 Pass as argument the class that you want relationate
+        return $this->hasMany(Like::class);
+    }
 }

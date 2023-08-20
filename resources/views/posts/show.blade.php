@@ -15,8 +15,33 @@
                 @slot('image', $post->image)
                 @slot('title', $post->title)
             @endcomponent
-            <div class="p-3">
-                0 likes
+            <div class="p-3 flex items-center gap-4">
+                @auth
+                    @if ($post->checkLike(auth()->user()))
+                        @component('posts._components.likeButton')
+                            @slot('endpoint', 'posts.likes.destroy')
+                            @slot('post', $post)
+                            @slot('method', true)
+                            @slot('color', 'red')
+                        @endcomponent
+                    @else
+                        @component('posts._components.likeButton')
+                            @slot('endpoint', 'posts.likes.store')
+                            @slot('post', $post)
+                            @slot('method', false)
+                            @slot('color', 'gray')
+                        @endcomponent
+                    @endif
+                @endauth
+                <p class="font-bold">{{ $post->likes()->count() }}
+                    <span class="font-normal">
+                        @if ($post->likes()->count() === 1)
+                            like
+                        @else
+                            likes
+                        @endif
+                    </span>
+                </p>
             </div>
             <div>
                 <p class="text-gray-700">{{ $post->description }}</p>
@@ -27,16 +52,16 @@
 
             {{-- Check if the are auth user --}}
             @auth
-                @if($post->user_id === auth()->user()->id)
-                <form action="{{route('posts.destroy', $post)}}" method="POST" >
-                    {{-- Method Spoofing allow use other type of method differents to get and post ex. delete, patch, put--}}
-                    @method('DELETE')
-                    @csrf
-                    <div class="mb-3 mt-2">
-                        <input type="submit" value="Eliminar post"
-                            class="bg-gradient-to-r hover:from-pink-600 hover:to-yellow-600 from-pink-500 to-yellow-500 transition-colors cursor-pointer uppercase font-bold p-2 text-white rounded-lg" />
-                    </div>
-                </form>
+                @if ($post->user_id === auth()->user()->id)
+                    <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                        {{-- Method Spoofing allow use other type of method differents to get and post ex. delete, patch, put --}}
+                        @method('DELETE')
+                        @csrf
+                        <div class="mb-3 mt-2">
+                            <input type="submit" value="Eliminar post"
+                                class="bg-gradient-to-r hover:from-pink-600 hover:to-yellow-600 from-pink-500 to-yellow-500 transition-colors cursor-pointer uppercase font-bold p-2 text-white rounded-lg" />
+                        </div>
+                    </form>
                 @endif
             @endauth
         </div>
