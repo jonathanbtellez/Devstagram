@@ -176,6 +176,11 @@ the use of descriptive names in laraval going to help you to manage db more easi
 php artisan make:migration create_posts_table
 `
 
+Adding fields to a table using a name convention
+
+`
+php artisan make:migration add_image_field_to_users_table 
+`
 
 ### Tinker CLI
 
