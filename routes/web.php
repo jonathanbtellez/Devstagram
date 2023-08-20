@@ -6,6 +6,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,9 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 
+// -------------------------------- PROFILE --------------------------------------------
+Route::get('/edit-profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::post('/edit-profile', [ProfileController::class, 'store'])->name('profile.store');
 
 // --------------------------POSTS-------------------------------------------------
 // When we use {} in the path we are creating a dinamic urls
@@ -52,6 +56,7 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 // we can use a attr of a model binded after two points /{user:username}
 //The first route is an example that how you can use an attr in the uri
+//* the use of variable have priority in the routes is important leave this how last gets routes
 Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
 
 // Come back to the laravel conventions
@@ -82,4 +87,5 @@ Route::post('/{user:username}/posts/{post}', [CommentController::class, 'store']
 //----------------------------- LIKE --------------------------------------------
 Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
 Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
+
 

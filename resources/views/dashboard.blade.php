@@ -11,7 +11,18 @@
                 <img src="{{ asset('img/usuario.svg') }}" alt="Imagen usuario" />
             </div>
             <div class="md:w-8/12 flex flex-col items-center md:justify-center md:items-start md:py-0 lg:w-6/12 px-5 py-10">
-                <p class="text-gray-700 text-2xl">{{ $user->username }}</p>
+                <div class="flex gap-2 items-center">
+                    <p class="text-gray-700 text-2xl">{{ $user->username }}</p>
+
+                    @auth
+                        @if ($user->id === auth()->user()->id)
+                            <a href="{{ route('profile.index') }}" class="text-gray-500 hover:text-gray-600 cursor-pointer">
+                                <i class="bi bi-pen"></i>
+                            </a>
+                        @endif
+                    @endauth
+                </div>
+
                 <p class="text-gray-800 text-sm mb-3 font-bold mt-5">
                     0
                     <span class="font-normal"> Seguidores</span>
@@ -42,10 +53,9 @@
                     </div> --}}
                     {{-- Replace html for a component that can be use in others views --}}
                     @component('_components.imageCard')
-                        
                         {{-- Puth a condition to use or not ancor tag --}}
                         @slot('useUrl', true)
-                        
+
                         {{-- Redirect to post/{id} view --}}
                         @slot('path', 'posts.show')
                         @slot('params', ['post' => $post, 'user' => $user])

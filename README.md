@@ -234,3 +234,18 @@ the flag --model associate a policy with the model given
 `
 php artisan make:policy PostPolicy --model=post
 `
+### Routes
+
+Commands that going to help you to manage route
+
+command to clear the cache, you can use this after that you change the path of your routes and don charge
+
+`
+php artisan route:cache
+`
+
+Command to consult how the route are use and what controller is manage it
+
+`
+php artisan route:list
+`

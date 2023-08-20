@@ -1,5 +1,5 @@
 <header class="p-5 border-b shadow bg-gradient-to-r from-purple-400 to-blue-300">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto flex justify-between items-center flex-col md:flex-row ">
         <h1 class="text-3xl font-black">
             DevStagram
         </h1>
