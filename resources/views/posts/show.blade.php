@@ -35,11 +35,7 @@
                 @endauth
                 <p class="font-bold">{{ $post->likes()->count() }}
                     <span class="font-normal">
-                        @if ($post->likes()->count() === 1)
-                            like
-                        @else
-                            likes
-                        @endif
+                        {{$post->likes()->count() === 1 ? 'like': 'likes' }}
                     </span>
                 </p>
             </div>

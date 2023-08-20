@@ -9,7 +9,8 @@
         <div class="w-full md:w-8/12 lg:w-6-12 flex flex-col items-center md:flex-row">
 
             <div class="w-8/12 lg:w-6/12 px-5 rounded-full">
-                <img src="{{ $user->image ? asset('profiles') . '/' . $user->image : asset('img/usuario.svg') }}"
+                <img class="rounded-full"
+                    src="{{ $user->image ? asset('profiles') . '/' . $user->image : asset('img/usuario.svg') }}"
                     alt="Imagen usuario" />
             </div>
             <div class="md:w-8/12 flex flex-col items-center md:justify-center md:items-start md:py-0 lg:w-6/12 px-5 py-10">
@@ -26,17 +27,37 @@
                 </div>
 
                 <p class="text-gray-800 text-sm mb-3 font-bold mt-5">
-                    0
-                    <span class="font-normal"> Seguidores</span>
+                    {{ $user->followers->count() }}
+                    <span class="font-normal"> {{ $user->followers->count() === 1 ? 'Seguidor' : 'Seguidores' }}</span>
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
-                    0
-                    <span class="font-normal"> Siguiendo</span>
+                    {{ $user->followings->count() }}
+                    <span class="font-normal">siguiendo</span>
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
                     {{ $posts->count() }}
-                    <span class="font-normal"> Posts</span>
+                    <span class="font-normal"> {{ $posts->count() === 1 ? 'post' : 'posts' }}</span>
                 </p>
+                @auth
+                    @if (auth()->user()->id !== $user->id)
+                        @if (!$user->checkFollower(auth()->user()))
+                            @component('_components.followButton')
+                                @slot('route', 'users.follow')
+                                @slot('user', $user)
+                                @slot('method', false)
+                                @slot('value', 'Seguir')
+                            @endcomponent
+                        @else
+                            @component('_components.followButton')
+                                @slot('route', 'users.unfollow')
+                                @slot('user', $user)
+                                @slot('method', true)
+                                @slot('value', 'Dejar de seguir')
+                            @endcomponent
+                        @endif
+                    @endif
+
+                @endauth
             </div>
         </div>
     </div>
@@ -49,7 +70,7 @@
                     {{-- <div>
                         <a href='#'> --}}
                     {{-- Construct the URL --}}
-                    {{-- <img src={{ asset('uploads').'/'.$post->image }} alt='Imagen del post {{ $post->title }}'>
+                    {{-- <img src={{ |asset('uploads').'/'.$post->image }} alt='Imagen del post {{ $post->title }}'>
 
                         </a>
                     </div> --}}

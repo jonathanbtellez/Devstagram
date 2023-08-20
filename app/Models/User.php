@@ -58,4 +58,23 @@ class User extends Authenticatable
         // 2 Pass as argument the class that you want relationate
         return $this->hasMany(Like::class);
     }
+
+    // Save followers
+    public function followers(){
+
+        // Manage a relation out of the convention of laravel
+        return $this->belongsToMany(User::class, 'followers','user_id','follower_id');
+    }
+
+    public function checkFollower(User $user){
+        // Contains chek in a param 1 the column  if the param 2 value exists 
+        return $this->followers->contains($user->id);
+    }
+
+    public function followings(){
+
+        // Manage a relation out of the convention of laravel
+        return $this->belongsToMany(User::class, 'followers','follower_id','user_id');
+    }
+
 }

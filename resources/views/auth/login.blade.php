@@ -21,7 +21,6 @@
                     <p class="bg-red-600 rounded text-sm text-white text-center mb-2">{{ session('message') }}</p>   
                 @endif
 
-
                 <div class="mb-5">
                     <label for="email" class="mb-2 block uppercase text-gray-600 font-bold">
                         Email

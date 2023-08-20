@@ -182,6 +182,11 @@ Adding fields to a table using a name convention
 php artisan make:migration add_image_field_to_users_table 
 `
 
+shorcut to create a --migrate  = -m or --controller -c or -mc to create both
+
+`
+php artisan make:model Follower --mc
+`
 ### Tinker CLI
 
 This is a cli where we can interact with data and db of our app
