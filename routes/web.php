@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
@@ -24,9 +25,8 @@ use Illuminate\Support\Facades\Route;
 
 
 // ------------------------------HOME---------------------------------
-Route::get('/', function () {
-    return view('index');
-});
+// When we use a controller with an invoke method we don't neen pass the array with [controller, method] you only need the controller
+Route::get('/', HomeController::class)->name('home');
 
 // -------------------------Register ------------------->
 // [Controller::class, 'Method to call the view']

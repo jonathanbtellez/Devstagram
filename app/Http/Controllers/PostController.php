@@ -30,9 +30,9 @@ class PostController extends Controller
         // get method return the consult to the database
         // $posts  = Post::where('user_id', $user->id)->get();
 
-
+        //latest order the result by date of created 
         // Paginate method allow show a specific quantity of register per view and a method to see the next  or previous registers
-        $posts  = Post::where('user_id', $user->id)->paginate(8);
+        $posts  = Post::where('user_id', $user->id)->latest()->paginate(8);
 
         // Filter by collection
         // This filter don´t have

@@ -259,3 +259,18 @@ Command to consult how the route are use and what controller is manage it
 `
 php artisan route:list
 `
+
+
+### Components
+
+Create a component to be reuse in html code
+
+`
+php artisan make:component ShowPost
+`
+
+Clear the view cache
+
+`
+php artisan view:clear
+`

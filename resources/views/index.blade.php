@@ -5,11 +5,18 @@
 
 {{-- @section is use to populate the yield directive and this need have the same 'identifier' --}}
 @section('title')
-Inicio
-{{-- Ending the send of data to the yield --}}
+    inicio
+    {{-- Ending the send of data to the yield --}}
 @endsection
 
 @section('content')
-<p>contenido de la pagina de inicio</p>
-{{-- Ending the send of data to the yield --}}
+
+    {{-- :prop=variable sendind data to components--}}
+    <x-show-post :posts="$posts" />
+    {{-- For else directive do a conditional iteration when the array have content show the content if no show the content of empty directive --}}
+    {{-- @forelse ($posts as $post)
+        <h2>{{ $post->title }}</h2>
+    @empty
+        <h2>No hay posts</h2>
+    @endforelse --}}
 @endsection
