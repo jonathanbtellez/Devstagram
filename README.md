@@ -274,3 +274,40 @@ Clear the view cache
 `
 php artisan view:clear
 `
+
+### Lirewire
+
+Fullstackframework to laravel
+
+`
+composer require livewire/livewire
+`
+
+After than istall you cna check the commands avaibles using 
+
+`
+php artisan
+`
+
+`
+  livewire:configure-s3-upload-cleanup  Configure temporary file upload s3 directory to     automatically cleanup files older than 24hrs
+  livewire:copy                         Copy a Livewire component
+  livewire:delete                       Delete a Livewire component
+  livewire:discover                     Regenerate Livewire component auto-discovery manifest  
+  livewire:make                         Create a new Livewire component
+  livewire:move                         Move a Livewire component
+  livewire:publish                      Publish Livewire configuration
+  livewire:stubs                        Publish Livewire stubs
+`
+
+Create component 
+
+`
+php artisan make:livewire like-post
+`
+
+public the js files of liviwire
+
+`
+php artisan livewire:publish --assets
+`

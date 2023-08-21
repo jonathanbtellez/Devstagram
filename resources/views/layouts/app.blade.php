@@ -21,7 +21,8 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 
-
+    {{-- Using the styles of livewire --}}
+    @livewireStyles
     <!-- Fonts
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" /> -->
@@ -39,6 +40,9 @@
         {{-- To use helpers of blade we use {{ helper()}} --}}
         DevStagram - Todos los derecho reservados {{ now()->year }}
     </footer>
+
+    {{-- Using the scrips of livewire --}}
+    @livewireScripts
 </body>
 
 </html>

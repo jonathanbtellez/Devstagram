@@ -15,30 +15,9 @@
                 @slot('image', $post->image)
                 @slot('title', $post->title)
             @endcomponent
-            <div class="p-3 flex items-center gap-2">
-                @auth
-                    @if ($post->checkLike(auth()->user()))
-                        @component('posts._components.likeButton')
-                            @slot('endpoint', 'posts.likes.destroy')
-                            @slot('post', $post)
-                            @slot('method', true)
-                            @slot('color', 'red')
-                        @endcomponent
-                    @else
-                        @component('posts._components.likeButton')
-                            @slot('endpoint', 'posts.likes.store')
-                            @slot('post', $post)
-                            @slot('method', false)
-                            @slot('color', 'gray')
-                        @endcomponent
-                    @endif
-                @endauth
-                <p class="font-bold">{{ $post->likes()->count() }}
-                    <span class="font-normal">
-                        {{$post->likes()->count() === 1 ? 'like': 'likes' }}
-                    </span>
-                </p>
-            </div>
+            @auth
+                <livewire:like-post :post="$post" />
+            @endauth
             <div>
                 <p class="text-gray-700">{{ $post->description }}</p>
                 <p class="font-bold">{{ $post->user->username }}</p>
